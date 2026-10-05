@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Charmel Paris — لوحة التحكم</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<aside class="sidebar">
+  <div class="admin-brand"><img src="assets/logo.jpg"><div><b>CHARMEL</b><small>ADMIN PANEL</small></div></div>
+  <nav><a class="active" href="#overview">لوحة التحكم</a><a href="#content">المحتوى</a><a href="#services">الخدمات</a><a href="#gallery">المعرض</a><a href="#settings">الإعدادات</a></nav>
+  <a class="view" href="index.html">← مشاهدة الموقع</a>
+</aside>
+<main class="admin-main">
+  <div class="admin-top"><div><span>لوحة الإدارة</span><h1>مرحباً بك في Charmel Paris</h1></div><div class="status">● الموقع يعمل</div></div>
+  <section id="overview" class="panel-grid">
+    <div class="stat"><small>الحجوزات اليوم</small><strong id="bookingCount">0</strong><span>طلبات محفوظة على هذا الجهاز</span></div>
+    <div class="stat"><small>الخدمات</small><strong>6</strong><span>يمكن تعديلها لاحقاً عبر قاعدة البيانات</span></div>
+    <div class="stat"><small>المعرض</small><strong>5</strong><span>صور رئيسية حالياً</span></div>
+  </section>
+  <section id="content" class="panel">
+    <div class="panel-title"><div><small>EDITOR</small><h2>النصوص الرئيسية</h2></div><button onclick="saveContent()">حفظ التعديلات</button></div>
+    <label>العنوان الرئيسي<input id="heroTitle" value="جمالكِ بلمسة باريسية"></label>
+    <label>الوصف<input id="heroDesc" value="صالون Charmel Paris — حيث تلتقي الأناقة، العناية، والخبرة في تجربة فاخرة مصممة لكِ."></label>
+    <div id="saveMsg"></div>
+  </section>
+  <section id="services" class="panel">
+    <div class="panel-title"><div><small>SERVICES</small><h2>الخدمات</h2></div></div>
+    <div class="service-admin">
+      <div><b>الشعر</b><span>قص • صبغات • تصفيف • علاجات</span></div>
+      <div><b>المكياج</b><span>إطلالات يومية ومناسبات</span></div>
+      <div><b>الأظافر</b><span>مانيكير • باديكير • تصاميم</span></div>
+      <div><b>الرموش والحواجب</b><span>رفع • تحديد • ترتيب</span></div>
+      <div><b>العناية بالبشرة</b><span>جلسات عناية واسترخاء</span></div>
+      <div><b>باقة متكاملة</b><span>تجربة جمال كاملة</span></div>
+    </div>
+  </section>
+  <section id="gallery" class="panel">
+    <div class="panel-title"><div><small>GALLERY</small><h2>إدارة المعرض</h2></div></div>
+    <p class="hint">هذه النسخة الأولى مجهزة لتوصيل الصور إلى Supabase Storage. لا تضع مفتاح Service Role في الواجهة.</p>
+  </section>
+  <section id="settings" class="panel">
+    <div class="panel-title"><div><small>SETTINGS</small><h2>إعدادات الربط</h2></div></div>
+    <p class="hint">عند ربط Supabase يمكن جعل الحجوزات، الخدمات، الصور، ساعات العمل، والمحتوى مشتركة بين جميع الزوار، مع تسجيل دخول خاص للمدير.</p>
+    <div class="security">🔐 <b>مهم:</b> استخدم Supabase Auth + RLS، ولا تضع service_role key داخل JavaScript.</div>
+  </section>
+</main>
+<script>
+const saved=JSON.parse(localStorage.getItem("charmelBookings")||"[]");
+document.getElementById("bookingCount").textContent=saved.length;
+function saveContent(){localStorage.setItem("charmelHero",JSON.stringify({title:heroTitle.value,desc:heroDesc.value}));saveMsg.textContent="تم حفظ النسخة المحلية. الربط الحقيقي بقاعدة البيانات سيتم في المرحلة التالية."}
+</script>
+</body>
+</html>
