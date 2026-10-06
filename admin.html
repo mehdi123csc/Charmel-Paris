@@ -1,54 +1,133 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Charmel Paris — لوحة التحكم</title>
-<link rel="stylesheet" href="admin.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="theme-color" content="#080808">
+  <title>Charmel Paris | Admin</title>
+  <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-<aside class="sidebar">
-  <div class="admin-brand"><img src="logo.jpg"><div><b>CHARMEL</b><small>ADMIN PANEL</small></div></div>
-  <nav><a class="active" href="#overview">لوحة التحكم</a><a href="#content">المحتوى</a><a href="#services">الخدمات</a><a href="#gallery">المعرض</a><a href="#settings">الإعدادات</a></nav>
-  <a class="view" href="index.html">← مشاهدة الموقع</a>
-</aside>
-<main class="admin-main">
-  <div class="admin-top"><div><span>لوحة الإدارة</span><h1>مرحباً بك في Charmel Paris</h1></div><div class="status">● الموقع يعمل</div></div>
-  <section id="overview" class="panel-grid">
-    <div class="stat"><small>الحجوزات اليوم</small><strong id="bookingCount">0</strong><span>طلبات محفوظة على هذا الجهاز</span></div>
-    <div class="stat"><small>الخدمات</small><strong>6</strong><span>يمكن تعديلها لاحقاً عبر قاعدة البيانات</span></div>
-    <div class="stat"><small>المعرض</small><strong>5</strong><span>صور رئيسية حالياً</span></div>
-  </section>
-  <section id="content" class="panel">
-    <div class="panel-title"><div><small>EDITOR</small><h2>النصوص الرئيسية</h2></div><button onclick="saveContent()">حفظ التعديلات</button></div>
-    <label>العنوان الرئيسي<input id="heroTitle" value="جمالكِ بلمسة باريسية"></label>
-    <label>الوصف<input id="heroDesc" value="صالون Charmel Paris — حيث تلتقي الأناقة، العناية، والخبرة في تجربة فاخرة مصممة لكِ."></label>
-    <div id="saveMsg"></div>
-  </section>
-  <section id="services" class="panel">
-    <div class="panel-title"><div><small>SERVICES</small><h2>الخدمات</h2></div></div>
-    <div class="service-admin">
-      <div><b>الشعر</b><span>قص • صبغات • تصفيف • علاجات</span></div>
-      <div><b>المكياج</b><span>إطلالات يومية ومناسبات</span></div>
-      <div><b>الأظافر</b><span>مانيكير • باديكير • تصاميم</span></div>
-      <div><b>الرموش والحواجب</b><span>رفع • تحديد • ترتيب</span></div>
-      <div><b>العناية بالبشرة</b><span>جلسات عناية واسترخاء</span></div>
-      <div><b>باقة متكاملة</b><span>تجربة جمال كاملة</span></div>
+
+  <div id="loginView" class="login-view">
+    <div class="login-card">
+      <div class="login-logo">CHARMEL <span>PARIS</span></div>
+      <p class="login-kicker">ADMINISTRATION</p>
+      <h1>لوحة التحكم</h1>
+      <p class="muted">سجلي الدخول لإدارة الصالون.</p>
+
+      <form id="loginForm">
+        <label>البريد الإلكتروني
+          <input id="loginEmail" type="email" autocomplete="email" required>
+        </label>
+        <label>كلمة المرور
+          <input id="loginPassword" type="password" autocomplete="current-password" required>
+        </label>
+        <button class="primary full" type="submit">دخول آمن</button>
+        <p id="loginMessage" class="message"></p>
+      </form>
     </div>
-  </section>
-  <section id="gallery" class="panel">
-    <div class="panel-title"><div><small>GALLERY</small><h2>إدارة المعرض</h2></div></div>
-    <p class="hint">هذه النسخة الأولى مجهزة لتوصيل الصور إلى Supabase Storage. لا تضع مفتاح Service Role في الواجهة.</p>
-  </section>
-  <section id="settings" class="panel">
-    <div class="panel-title"><div><small>SETTINGS</small><h2>إعدادات الربط</h2></div></div>
-    <p class="hint">عند ربط Supabase يمكن جعل الحجوزات، الخدمات، الصور، ساعات العمل، والمحتوى مشتركة بين جميع الزوار، مع تسجيل دخول خاص للمدير.</p>
-    <div class="security">🔐 <b>مهم:</b> استخدم Supabase Auth + RLS، ولا تضع service_role key داخل JavaScript.</div>
-  </section>
-</main>
-<script>
-const saved=JSON.parse(localStorage.getItem("charmelBookings")||"[]");
-document.getElementById("bookingCount").textContent=saved.length;
-function saveContent(){localStorage.setItem("charmelHero",JSON.stringify({title:heroTitle.value,desc:heroDesc.value}));saveMsg.textContent="تم حفظ النسخة المحلية. الربط الحقيقي بقاعدة البيانات سيتم في المرحلة التالية."}
-</script>
+  </div>
+
+  <div id="appView" class="app hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="side-brand">CHARMEL <span>PARIS</span></div>
+      <button class="side-link active" data-page="dashboard">◈ <span>الرئيسية</span></button>
+      <button class="side-link" data-page="services">✦ <span>الخدمات والأسعار</span></button>
+      <button class="side-link" data-page="gallery">▧ <span>الصور</span></button>
+      <button class="side-link" data-page="bookings">◷ <span>الحجوزات</span></button>
+      <button class="side-link" data-page="settings">⚙ <span>الإعدادات</span></button>
+      <div class="side-bottom">
+        <span id="adminEmail" class="admin-email"></span>
+        <button id="logoutBtn" class="logout">تسجيل الخروج</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <button id="mobileSideBtn" class="mobile-side">☰</button>
+        <div>
+          <p class="top-kicker">CHARMEL PARIS</p>
+          <h2 id="pageTitle">الرئيسية</h2>
+        </div>
+        <a class="view-site" href="index.html" target="_blank">عرض الموقع ↗</a>
+      </div>
+
+      <section id="page-dashboard" class="page active-page">
+        <div class="cards">
+          <div class="stat"><span>الخدمات النشطة</span><strong id="statServices">0</strong></div>
+          <div class="stat"><span>الصور</span><strong id="statGallery">0</strong></div>
+          <div class="stat"><span>الحجوزات الجديدة</span><strong id="statNewBookings">0</strong></div>
+          <div class="stat"><span>كل الحجوزات</span><strong id="statBookings">0</strong></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><div><h3>آخر الحجوزات</h3><p>آخر طلبات المواعيد من الموقع.</p></div>
+            <button class="small-btn" data-go="bookings">عرض الكل</button>
+          </div>
+          <div id="dashboardBookings" class="table-wrap"></div>
+        </div>
+      </section>
+
+      <section id="page-services" class="page">
+        <div class="panel">
+          <div class="panel-head">
+            <div><h3>الخدمات والأسعار</h3><p>أضيفي، عدلي أو أخفي أي خدمة من الموقع.</p></div>
+            <button class="primary" id="addServiceBtn">+ إضافة خدمة</button>
+          </div>
+          <div id="servicesList" class="cards-list"></div>
+        </div>
+      </section>
+
+      <section id="page-gallery" class="page">
+        <div class="panel">
+          <div class="panel-head">
+            <div><h3>معرض الصور</h3><p>ارفعي الصور مباشرة من الهاتف أو الكمبيوتر.</p></div>
+            <button class="primary" id="addGalleryBtn">+ إضافة صورة</button>
+          </div>
+          <div id="galleryList" class="gallery-admin"></div>
+        </div>
+      </section>
+
+      <section id="page-bookings" class="page">
+        <div class="panel">
+          <div class="panel-head">
+            <div><h3>الحجوزات</h3><p>إدارة وتأكيد مواعيد العميلات.</p></div>
+            <select id="bookingFilter" class="filter">
+              <option value="all">كل الحالات</option>
+              <option value="new">جديد</option>
+              <option value="confirmed">مؤكد</option>
+              <option value="completed">مكتمل</option>
+              <option value="cancelled">ملغي</option>
+            </select>
+          </div>
+          <div id="bookingsList" class="table-wrap"></div>
+        </div>
+      </section>
+
+      <section id="page-settings" class="page">
+        <div class="panel settings-panel">
+          <h3>الإعدادات</h3>
+          <p>هذه النسخة تستخدم Supabase للحسابات وقاعدة البيانات. لا تضعي مفتاح <b>service_role</b> داخل الموقع.</p>
+          <div class="notice">
+            <strong>الأمان:</strong>
+            <span>العميلة تستطيع إنشاء حجز فقط. قراءة وتعديل وحذف الحجوزات محصور بحساب admin.</span>
+          </div>
+          <p class="muted">لتغيير رقم واتساب أو بيانات الاتصال، عدلي القيم في index.html وscript.js.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose">×</button>
+      <h3 id="modalTitle"></h3>
+      <form id="modalForm"></form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="admin.js"></script>
 </body>
 </html>

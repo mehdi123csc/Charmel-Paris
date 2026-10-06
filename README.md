@@ -1,14 +1,15 @@
-# Charmel Paris — Luxury Salon v2
+# Charmel Paris — Supabase Connected
 
-واجهة مطورة بطابع Luxury Editorial:
-- Hero سينمائي أسود وذهبي.
-- شعار Charmel Paris المرسل.
-- صور شعر ومكياج وأظافر وعناية.
-- خدمات بصور وبطاقات احترافية.
-- شريط متحرك للهوية.
-- أقسام قصة وتجربة ومعرض وحجز وموقع.
-- حجز WhatsApp.
-- Responsive للهاتف والكمبيوتر.
-- `admin.html` موجود كواجهة بداية للوحة التحكم.
+Main site and admin dashboard connected to Supabase.
 
-الخطوة التالية: ربط لوحة التحكم بـ Supabase Auth + Database + Storage مع RLS.
+## Main site
+Open `index.html`.
+
+## Admin dashboard
+Open `admin/admin.html`.
+
+## Supabase
+The browser uses only the public Publishable key. No Secret/service_role key is included.
+
+Project URL:
+https://ddhyijnaocccihtfzraq.supabase.co

@@ -2,355 +2,224 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0a0a0a">
-  <meta name="description" content="Charmel Paris - صالون تجميل فاخر">
-  <title>Charmel Paris | Salon de Beauté</title>
-
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Charmel Paris — Luxury Beauty Salon">
+  <meta name="theme-color" content="#080808">
+  <title>Charmel Paris — Luxury Beauty Salon</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <header class="site-header" id="siteHeader">
-    <div class="container header-inner">
+<div class="announcement">
+  <span>CHARMEL PARIS</span>
+  <p>Luxury Beauty • Style • Confidence</p>
+  <a href="#booking">احجزي موعدك <b>↗</b></a>
+</div>
 
-      <a href="#home" class="brand" aria-label="Charmel Paris">
-        <div class="brand-logo-wrap">
-          <img src="logo.jpg" alt="Charmel Paris" class="brand-logo"
-               onerror="this.style.display='none'; this.parentElement.classList.add('logo-fallback');">
-          <span class="brand-fallback-mark">CP</span>
-        </div>
-        <div class="brand-text">
-          <span class="brand-name">CHARMEL</span>
-          <span class="brand-sub">P A R I S</span>
-        </div>
-      </a>
+<header class="header" id="header">
+  <div class="container nav-wrap">
+    <a href="#home" class="brand">
+      <img src="logo.jpg" alt="Charmel Paris">
+      <span><strong>CHARMEL</strong><small>PARIS</small></span>
+    </a>
 
-      <button class="menu-btn" id="menuBtn" aria-label="فتح القائمة" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+    <button class="menu-btn" id="menuBtn" aria-label="القائمة"><span></span><span></span></button>
 
-      <nav class="nav" id="navMenu">
-        <a href="#home" class="active">الرئيسية</a>
-        <a href="#about">عن الصالون</a>
-        <a href="#services">الخدمات</a>
-        <a href="#gallery">المعرض</a>
-        <a href="#booking">حجز موعد</a>
-        <a href="#contact">اتصل بنا</a>
-      </nav>
+    <nav class="nav" id="nav">
+      <a class="active" href="#home">الرئيسية</a>
+      <a href="#about">قصتنا</a>
+      <a href="#services">الخدمات</a>
+      <a href="#gallery">المعرض</a>
+      <a href="#booking">الحجز</a>
+      <a href="#contact">الموقع</a>
+      <a class="nav-button" href="#booking">احجزي الآن</a>
+    </nav>
+  </div>
+</header>
 
-      <a href="#booking" class="header-cta">احجزي موعدك</a>
-    </div>
-  </header>
-
-  <main>
-
-    <section class="hero" id="home">
-      <div class="hero-overlay"></div>
-      <div class="hero-content container">
-        <p class="eyebrow">SALON DE BEAUTÉ • DOHA</p>
-        <h1>جمالكِ<br><span>يستحق الأفضل</span></h1>
-        <p class="hero-desc">
-          تجربة فاخرة تجمع بين الأناقة الفرنسية، العناية المتخصصة
-          وأحدث تقنيات الجمال في Charmel Paris.
-        </p>
-        <div class="hero-actions">
-          <a href="#booking" class="btn btn-gold">احجزي موعدك</a>
-          <a href="#services" class="btn btn-outline">اكتشفي خدماتنا</a>
-        </div>
-        <div class="hero-note">
-          <span>✦</span> جمالكِ، بأسلوب Charmel Paris
-        </div>
+<main>
+  <section class="hero" id="home">
+    <div class="hero-image"></div>
+    <div class="hero-shade"></div>
+    <div class="hero-content container">
+      <div class="hero-kicker"><i></i> THE ART OF BEAUTY <i></i></div>
+      <h1>جمالكِ<br><em>بلمسة باريسية</em></h1>
+      <p>تجربة فاخرة للعناية بالشعر، المكياج والجمال، صُممت لتجعلكِ تشعرين بالاختلاف.</p>
+      <div class="hero-buttons">
+        <a href="#booking" class="gold-button">احجزي تجربتك <span>↗</span></a>
+        <a href="#services" class="line-button">اكتشفي الخدمات</a>
       </div>
+    </div>
+
+    <div class="hero-side-note">
+      <span>EST.</span><b>CHARMEL<br>PARIS</b><span>BEAUTY SALON</span>
+    </div>
+
+    <div class="hero-bottom container">
+      <div><b>10+</b><span>سنوات خبرة</span></div>
+      <div><b>5K+</b><span>عميلة</span></div>
+      <div><b>20+</b><span>خدمة جمال</span></div>
       <div class="hero-scroll">SCROLL <span>↓</span></div>
-    </section>
-
-    <section class="about section" id="about">
-      <div class="container about-grid">
-        <div class="about-image">
-          <div class="image-frame">
-            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1100&q=85"
-                 alt="صالون تجميل فاخر" loading="lazy">
-          </div>
-          <div class="about-badge">
-            <strong>CP</strong>
-            <span>CHARMEL<br>PARIS</span>
-          </div>
-        </div>
-
-        <div class="about-content">
-          <p class="section-kicker">NOT JUST BEAUTY</p>
-          <h2>أناقة تبدأ<br><em>من التفاصيل.</em></h2>
-          <div class="gold-line"></div>
-          <p>
-            في Charmel Paris نؤمن أن الجمال الحقيقي هو تجربة متكاملة.
-            لذلك صممنا مساحة تجمع الهدوء، الفخامة والخبرة لتمنحكِ
-            لحظات خاصة تستحقينها.
-          </p>
-          <p>
-            من تصفيف الشعر والمكياج إلى الأظافر والعناية بالبشرة،
-            فريقنا يهتم بكل تفصيلة ليكون كل موعد تجربة مختلفة.
-          </p>
-
-          <div class="stats">
-            <div><strong>10+</strong><span>سنوات خبرة</span></div>
-            <div><strong>5K+</strong><span>عميلة</span></div>
-            <div><strong>20+</strong><span>خدمة جمالية</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="services section-dark" id="services">
-      <div class="container">
-        <div class="section-heading">
-          <p class="section-kicker">OUR SIGNATURE</p>
-          <h2>خدماتنا <em>الفاخرة</em></h2>
-          <p>كل ما تحتاجينه لإطلالة متكاملة في مكان واحد.</p>
-        </div>
-
-        <div class="services-grid">
-
-          <article class="service-card">
-            <div class="service-number">01</div>
-            <div class="service-icon">✦</div>
-            <h3>الشعر</h3>
-            <p>قص، تسريح، صبغات، علاجات وتصفيف للمناسبات.</p>
-            <a href="#booking">احجزي الآن <span>←</span></a>
-          </article>
-
-          <article class="service-card featured">
-            <div class="service-number">02</div>
-            <div class="service-icon">◈</div>
-            <h3>المكياج</h3>
-            <p>إطلالات راقية للمناسبات والأعراس والجلسات الخاصة.</p>
-            <a href="#booking">احجزي الآن <span>←</span></a>
-          </article>
-
-          <article class="service-card">
-            <div class="service-number">03</div>
-            <div class="service-icon">◇</div>
-            <h3>الأظافر</h3>
-            <p>مانيكير، باديكير وتصاميم أنيقة بأعلى عناية.</p>
-            <a href="#booking">احجزي الآن <span>←</span></a>
-          </article>
-
-          <article class="service-card">
-            <div class="service-number">04</div>
-            <div class="service-icon">❖</div>
-            <h3>الرموش والحواجب</h3>
-            <p>تحديد وتجميل الرموش والحواجب لإطلالة أكثر جمالاً.</p>
-            <a href="#booking">احجزي الآن <span>←</span></a>
-          </article>
-
-          <article class="service-card">
-            <div class="service-number">05</div>
-            <div class="service-icon">○</div>
-            <h3>العناية بالبشرة</h3>
-            <p>جلسات عناية وتنظيف وترطيب لبشرة مشرقة.</p>
-            <a href="#booking">احجزي الآن <span>←</span></a>
-          </article>
-
-          <article class="service-card">
-            <div class="service-number">06</div>
-            <div class="service-icon">✧</div>
-            <h3>إطلالة متكاملة</h3>
-            <p>باقة مخصصة تجمع أكثر من خدمة في تجربة واحدة.</p>
-            <a href="#booking">احجزي الآن <span>←</span></a>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="editorial">
-      <div class="editorial-image">
-        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1400&q=85"
-             alt="إطلالة مكياج فاخرة" loading="lazy">
-      </div>
-      <div class="editorial-content">
-        <p class="section-kicker">THE CHARMEL EXPERIENCE</p>
-        <h2>لحظتكِ.<br><em>قواعدكِ.</em></h2>
-        <p>اتركي لنا التفاصيل واستمتعي بتجربة عناية مصممة حولكِ.</p>
-        <a href="#booking" class="text-link">ابدئي تجربتك <span>←</span></a>
-      </div>
-    </section>
-
-    <section class="gallery section" id="gallery">
-      <div class="container">
-        <div class="section-heading">
-          <p class="section-kicker">OUR WORLD</p>
-          <h2>من <em>داخل</em> عالمنا</h2>
-          <p>لمحات من أجواء الجمال والأناقة في Charmel Paris.</p>
-        </div>
-
-        <div class="gallery-grid">
-          <div class="gallery-item tall">
-            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=85" alt="تصفيف شعر" loading="lazy">
-          </div>
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=900&q=85" alt="مكياج" loading="lazy">
-          </div>
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=85" alt="أظافر" loading="lazy">
-          </div>
-          <div class="gallery-item wide">
-            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1200&q=85" alt="صالون شعر" loading="lazy">
-          </div>
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=900&q=85" alt="عناية جمالية" loading="lazy">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="quote-section">
-      <div class="container">
-        <p class="quote-mark">“</p>
-        <blockquote>الجمال ليس شيئاً نضيفه إليكِ،<br>بل شيئاً نكشفه فيكِ.</blockquote>
-        <div class="gold-line center"></div>
-        <p class="quote-brand">CHARMEL PARIS</p>
-      </div>
-    </section>
-
-    <section class="booking section-dark" id="booking">
-      <div class="container booking-grid">
-        <div class="booking-info">
-          <p class="section-kicker">PRIVATE APPOINTMENT</p>
-          <h2>احجزي<br><em>لحظتكِ.</em></h2>
-          <p>
-            اختاري الخدمة والوقت المناسب، وسنفتح لكِ واتساب
-            لإرسال تفاصيل الحجز مباشرة إلى الصالون.
-          </p>
-
-          <div class="booking-hours">
-            <div><span>السبت – الخميس</span><strong>10:00 — 21:00</strong></div>
-            <div><span>الجمعة</span><strong>14:00 — 21:00</strong></div>
-          </div>
-        </div>
-
-        <form class="booking-form" id="bookingForm">
-          <div class="form-row">
-            <label>
-              الاسم
-              <input type="text" id="name" placeholder="اكتبي اسمك" required>
-            </label>
-            <label>
-              رقم الهاتف
-              <input type="tel" id="phone" placeholder="+974 ..." required>
-            </label>
-          </div>
-
-          <div class="form-row">
-            <label>
-              الخدمة
-              <select id="service" required>
-                <option value="">اختاري الخدمة</option>
-                <option>الشعر</option>
-                <option>المكياج</option>
-                <option>الأظافر</option>
-                <option>الرموش والحواجب</option>
-                <option>العناية بالبشرة</option>
-                <option>إطلالة متكاملة</option>
-              </select>
-            </label>
-            <label>
-              التاريخ
-              <input type="date" id="date" required>
-            </label>
-          </div>
-
-          <label>
-            الوقت المفضل
-            <select id="time" required>
-              <option value="">اختاري الوقت</option>
-              <option>10:00</option><option>11:00</option><option>12:00</option>
-              <option>13:00</option><option>14:00</option><option>15:00</option>
-              <option>16:00</option><option>17:00</option><option>18:00</option>
-              <option>19:00</option><option>20:00</option>
-            </select>
-          </label>
-
-          <label>
-            ملاحظات إضافية
-            <textarea id="message" rows="4" placeholder="أي طلب أو ملاحظة..."></textarea>
-          </label>
-
-          <button type="submit" class="btn btn-gold full">إرسال طلب الحجز عبر واتساب</button>
-          <p class="form-status" id="formStatus"></p>
-        </form>
-      </div>
-    </section>
-
-    <section class="contact section" id="contact">
-      <div class="container">
-        <div class="section-heading">
-          <p class="section-kicker">VISIT US</p>
-          <h2>نحن بانتظاركِ</h2>
-        </div>
-
-        <div class="contact-grid">
-          <div class="contact-details">
-            <div class="contact-card">
-              <span>الموقع</span>
-              <strong>Arab League St<br>Doha, Qatar</strong>
-            </div>
-            <div class="contact-card">
-              <span>الهاتف</span>
-              <a href="tel:+97444881336">+974 4488 1336</a>
-            </div>
-            <div class="contact-card">
-              <span>واتساب</span>
-              <a href="https://wa.me/97444881336" target="_blank" rel="noopener">تواصلي معنا مباشرة</a>
-            </div>
-            <div class="contact-card">
-              <span>ساعات العمل</span>
-              <strong>السبت – الخميس: 10:00–21:00<br>الجمعة: 14:00–21:00</strong>
-            </div>
-          </div>
-
-          <div class="map-wrap">
-            <iframe
-              title="موقع Charmel Paris"
-              src="https://www.google.com/maps?q=Charmel%20Paris%20Doha%20Qatar&output=embed"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-            <a class="map-button" href="https://maps.app.goo.gl/cpLv1UpbArvzBpCG6" target="_blank" rel="noopener">
-              فتح الموقع في Google Maps ↗
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div>
-        <div class="footer-logo">CHARMEL <span>PARIS</span></div>
-        <p>Beauty is an experience.</p>
-      </div>
-      <div class="footer-links">
-        <a href="#home">الرئيسية</a>
-        <a href="#services">الخدمات</a>
-        <a href="#booking">حجز موعد</a>
-        <a href="#contact">اتصل بنا</a>
-      </div>
-      <p class="copyright">© <span id="year"></span> Charmel Paris. All rights reserved.</p>
     </div>
-  </footer>
+  </section>
 
-  <a class="whatsapp" href="https://wa.me/97444881336" target="_blank" rel="noopener" aria-label="واتساب">
-    <span>WA</span>
-  </a>
+  <div class="ticker">
+    <div>CHARMEL PARIS <span>✦</span> HAIR <span>✦</span> MAKEUP <span>✦</span> NAILS <span>✦</span> BEAUTY <span>✦</span> CHARMEL PARIS <span>✦</span> HAIR <span>✦</span> MAKEUP <span>✦</span></div>
+  </div>
 
-  <script src="script.js"></script>
+  <section class="intro section" id="about">
+    <div class="container intro-grid">
+      <div class="intro-visual reveal">
+        <div class="visual-main">
+          <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=90" alt="إطلالة مكياج">
+        </div>
+        <div class="visual-small">
+          <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=90" alt="تصفيف شعر">
+        </div>
+        <div class="visual-label"><b>CP</b><span>THE CHARMEL<br>EXPERIENCE</span></div>
+      </div>
+
+      <div class="intro-copy reveal">
+        <div class="overline">01 — OUR STORY</div>
+        <h2>الفخامة ليست<br><em>مظهرًا فقط.</em></h2>
+        <p class="lead">هي الإحساس الذي يبقى معكِ بعد مغادرة الصالون.</p>
+        <p>في Charmel Paris نجمع بين الذوق الفرنسي، اللمسة العصرية، والخبرة الاحترافية لنقدم لكِ تجربة جمال متكاملة.</p>
+        <p>كل تفصيل صُمم بعناية — من الأجواء إلى الخدمة وحتى اللمسة الأخيرة.</p>
+        <a href="#services" class="under-link">اكتشفي عالم Charmel <span>←</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="services section dark" id="services">
+    <div class="container">
+      <div class="section-heading reveal">
+        <div><div class="overline gold">02 — SIGNATURE SERVICES</div><h2>خدماتنا، <em>بطريقتنا.</em></h2></div>
+        <p>كل خدمة تحمل توقيع Charmel Paris.</p>
+      </div>
+
+      <div class="services-grid">
+        <article class="service reveal">
+          <div class="service-photo"><img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1000&q=90" alt="خدمات الشعر"></div>
+          <div class="service-body"><span>01</span><h3>Hair</h3><p>قص، لون، تصفيف وعلاجات شعر باحترافية.</p><a href="#booking">احجزي ↗</a></div>
+        </article>
+        <article class="service reveal">
+          <div class="service-photo"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1000&q=90" alt="المكياج"></div>
+          <div class="service-body"><span>02</span><h3>Makeup</h3><p>إطلالات ناعمة، مناسبات وسهرات بلمسة فنية.</p><a href="#booking">احجزي ↗</a></div>
+        </article>
+        <article class="service reveal">
+          <div class="service-photo"><img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1000&q=90" alt="الأظافر"></div>
+          <div class="service-body"><span>03</span><h3>Nails</h3><p>عناية، مانيكير، باديكير وتصاميم أنيقة.</p><a href="#booking">احجزي ↗</a></div>
+        </article>
+        <article class="service reveal">
+          <div class="service-photo"><img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=1000&q=90" alt="العناية"></div>
+          <div class="service-body"><span>04</span><h3>Beauty</h3><p>رموش، حواجب وعناية تمنحكِ إطلالة متكاملة.</p><a href="#booking">احجزي ↗</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="statement">
+    <div class="statement-bg"></div>
+    <div class="statement-content reveal">
+      <span>YOUR BEAUTY. YOUR MOMENT.</span>
+      <h2>كوني <em>النسخة</em><br>التي تحبينها.</h2>
+      <a href="#booking">ابدئي تجربتك <b>↗</b></a>
+    </div>
+  </section>
+
+  <section class="experience section">
+    <div class="container experience-grid">
+      <div class="experience-copy reveal">
+        <div class="overline">03 — THE CHARMEL MOMENT</div>
+        <h2>من أول لحظة<br>حتى <em>آخر لمسة.</em></h2>
+        <p>نحن لا نريد فقط أن تبدين جميلة. نريد أن تشعري بالثقة، الراحة، والاهتمام.</p>
+        <div class="experience-list">
+          <div><b>01</b><span><strong>استشارة شخصية</strong><small>نفهم ما يناسبكِ قبل أن نبدأ.</small></span></div>
+          <div><b>02</b><span><strong>فريق متخصص</strong><small>خبرة واهتمام بالتفاصيل الصغيرة.</small></span></div>
+          <div><b>03</b><span><strong>نتيجة تستحقها</strong><small>إطلالة مصممة لتشبهكِ.</small></span></div>
+        </div>
+      </div>
+      <div class="experience-photo reveal">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1300&q=90" alt="تجربة Charmel Paris">
+        <div class="photo-stamp">CHARMEL<br><small>PARIS</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery section dark" id="gallery">
+    <div class="container">
+      <div class="section-heading reveal">
+        <div><div class="overline gold">04 — GALLERY</div><h2>لحظات من <em>Charmel.</em></h2></div>
+        <a class="light-link" href="#booking">احجزي إطلالتك ↗</a>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-card tall reveal"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1000&q=90" alt="مكياج فاخر"></div>
+        <div class="gallery-card reveal"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=900&q=90" alt="شعر"></div>
+        <div class="gallery-card reveal"><img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=90" alt="أظافر"></div>
+        <div class="gallery-card reveal"><img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=900&q=90" alt="أظافر وعناية"></div>
+        <div class="gallery-card reveal"><img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=900&q=90" alt="تصفيف"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking section" id="booking">
+    <div class="container booking-grid">
+      <div class="booking-intro reveal">
+        <div class="overline">05 — BOOKING</div>
+        <h2>موعدكِ يبدأ<br><em>من هنا.</em></h2>
+        <p>اختاري الخدمة والموعد المناسب، وسيتواصل معكِ فريق Charmel Paris لتأكيد الحجز.</p>
+        <div class="booking-detail"><span>✦</span><div><b>حجز مباشر</b><small>يرسل الطلب مباشرة إلى WhatsApp.</small></div></div>
+      </div>
+
+      <form class="booking-form reveal" id="bookingForm">
+        <div class="form-head"><span>BOOK YOUR EXPERIENCE</span><b>01 / 01</b></div>
+        <div class="form-row">
+          <label>الاسم الكامل<input id="name" required placeholder="اكتبي اسمك"></label>
+          <label>رقم الهاتف<input id="phone" required placeholder="+974 ..."></label>
+        </div>
+        <div class="form-row">
+          <label>الخدمة<select id="service" required><option value="">اختاري الخدمة</option><option>الشعر</option><option>المكياج</option><option>الأظافر</option><option>الرموش والحواجب</option><option>العناية بالبشرة</option><option>باقة متكاملة</option></select></label>
+          <label>التاريخ<input id="date" type="date" required></label>
+        </div>
+        <label>الوقت المفضل<input id="time" type="time" required></label>
+        <label>ملاحظات<textarea id="message" rows="3" placeholder="أي تفاصيل إضافية؟"></textarea></label>
+        <button class="gold-button full" type="submit">إرسال طلب الحجز <span>↗</span></button>
+        <div id="formStatus" class="form-status"></div>
+      </form>
+    </div>
+  </section>
+
+  <section class="visit section dark" id="contact">
+    <div class="container">
+      <div class="visit-head reveal">
+        <div><div class="overline gold">06 — VISIT US</div><h2>نلتقي بكِ<br><em>في Charmel.</em></h2></div>
+        <a class="gold-outline" href="https://maps.app.goo.gl/cpLv1UpbArvzBpCG6" target="_blank" rel="noopener">فتح الموقع على الخريطة ↗</a>
+      </div>
+      <div class="visit-grid">
+        <div class="visit-card reveal"><span>ADDRESS</span><b>Arab League St</b><p>Doha, Qatar</p></div>
+        <div class="visit-card reveal"><span>PHONE</span><b dir="ltr">+974 4488 1336</b><p>اتصال مباشر</p></div>
+        <div class="visit-card reveal"><span>OPENING HOURS</span><b>10:00 — 21:00</b><p>السبت – الخميس<br>الجمعة 14:00 — 21:00</p></div>
+      </div>
+      <div class="map"><iframe title="Charmel Paris" src="https://www.google.com/maps?q=Arab%20League%20St%20Doha%20Qatar&output=embed" loading="lazy"></iframe></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-main">
+    <div class="footer-logo"><img src="logo.jpg" alt="Charmel Paris"><h3>CHARMEL <i>PARIS</i></h3><p>Luxury Beauty • Style • Confidence</p></div>
+    <div class="footer-links"><a href="#about">قصتنا</a><a href="#services">الخدمات</a><a href="#gallery">المعرض</a><a href="#booking">الحجز</a></div>
+    <div class="footer-contact"><span>GET IN TOUCH</span><a href="tel:+97444881336">+974 4488 1336</a><a href="https://maps.app.goo.gl/cpLv1UpbArvzBpCG6" target="_blank">Doha, Qatar ↗</a></div>
+  </div>
+  <div class="container footer-bottom"><span>© <b id="year"></b> Charmel Paris</span><span>Designed for a luxury beauty experience.</span></div>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/97444881336" target="_blank" rel="noopener" aria-label="WhatsApp"><span>◔</span></a>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

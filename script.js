@@ -1,167 +1,173 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const header = document.getElementById("siteHeader");
-  const menuBtn = document.getElementById("menuBtn");
-  const nav = document.getElementById("navMenu");
-  const bookingForm = document.getElementById("bookingForm");
-  const formStatus = document.getElementById("formStatus");
-  const dateInput = document.getElementById("date");
-  const year = document.getElementById("year");
+(() => {
+  "use strict";
 
-  // =========================
-  // 1) MOBILE MENU
-  // =========================
-  if (menuBtn && nav) {
-    menuBtn.addEventListener("click", () => {
-      const isOpen = nav.classList.toggle("open");
-      menuBtn.setAttribute("aria-expanded", String(isOpen));
-    });
+  const cfg = window.CHARMEL_CONFIG || {};
+  const sb = window.supabase && cfg.SUPABASE_URL && cfg.SUPABASE_ANON_KEY
+    ? window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY)
+    : null;
 
-    nav.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        nav.classList.remove("open");
-        menuBtn.setAttribute("aria-expanded", "false");
-      });
-    });
+  const menuBtn=document.getElementById("menuBtn");
+  const nav=document.getElementById("nav");
+  if(menuBtn&&nav){
+    menuBtn.addEventListener("click",()=>nav.classList.toggle("open"));
+    nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>nav.classList.remove("open")));
   }
 
-  // =========================
-  // 2) HEADER ON SCROLL
-  // =========================
-  const updateHeader = () => {
-    if (!header) return;
-    header.style.background =
-      window.scrollY > 30
-        ? "rgba(8,8,8,.96)"
-        : "rgba(8,8,8,.72)";
-  };
+  const header=document.getElementById("header");
+  window.addEventListener("scroll",()=>{
+    if(header) header.style.background=scrollY>55?"rgba(5,5,5,.96)":"rgba(8,8,7,.45)";
+  });
 
-  updateHeader();
-  window.addEventListener("scroll", updateHeader, { passive: true });
+  const year=document.getElementById("year");
+  if(year) year.textContent=new Date().getFullYear();
 
-  // =========================
-  // 3) CURRENT YEAR
-  // =========================
-  if (year) {
-    year.textContent = new Date().getFullYear();
+  const dateInput=document.getElementById("date");
+  if(dateInput) dateInput.min=new Date().toISOString().split("T")[0];
+
+  const WA="97444881336";
+  const serviceSelect=document.getElementById("service");
+  const servicesGrid=document.querySelector(".services-grid");
+  const galleryGrid=document.querySelector(".gallery-grid");
+
+  function esc(v){
+    return String(v ?? "").replace(/[&<>\"']/g,c=>({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;", "'":"&#039;"
+    }[c]));
   }
 
-  // =========================
-  // 4) MINIMUM BOOKING DATE
-  // =========================
-  if (dateInput) {
-    const today = new Date();
-    const yyyy = today.getFullYear();
-    const mm = String(today.getMonth() + 1).padStart(2, "0");
-    const dd = String(today.getDate()).padStart(2, "0");
-    dateInput.min = `${yyyy}-${mm}-${dd}`;
+  function money(v){
+    const n=Number(v||0);
+    return n>0 ? `${n.toLocaleString("ar-QA")} QAR` : "السعر حسب الخدمة";
   }
 
-  // =========================
-  // 5) WHATSAPP BOOKING
-  // Change this number if the salon's WhatsApp is different.
-  // =========================
-  const WHATSAPP_NUMBER = "97444881336";
+  function serviceFallback(){
+    return [
+      {name:"Hair",category:"Hair",description:"قص، لون، تصفيف وعلاجات شعر باحترافية.",price:0,sort_order:1},
+      {name:"Makeup",category:"Beauty",description:"إطلالات ناعمة، مناسبات وسهرات بلمسة فنية.",price:0,sort_order:2},
+      {name:"Nails",category:"Beauty",description:"عناية، مانيكير، باديكير وتصاميم أنيقة.",price:0,sort_order:3},
+      {name:"Beauty",category:"Beauty",description:"رموش، حواجب وعناية تمنحكِ إطلالة متكاملة.",price:0,sort_order:4}
+    ];
+  }
 
-  if (bookingForm) {
-    bookingForm.addEventListener("submit", event => {
-      event.preventDefault();
+  async function loadServices(){
+    if(!servicesGrid) return;
+    let list=serviceFallback();
+    if(sb){
+      const r=await sb.from("services").select("id,name,category,description,price,duration_minutes,sort_order").eq("active",true).order("sort_order",{ascending:true});
+      if(!r.error && Array.isArray(r.data) && r.data.length) list=r.data;
+    }
 
-      const name = document.getElementById("name")?.value.trim();
-      const phone = document.getElementById("phone")?.value.trim();
-      const service = document.getElementById("service")?.value;
-      const date = document.getElementById("date")?.value;
-      const time = document.getElementById("time")?.value;
-      const message = document.getElementById("message")?.value.trim();
+    servicesGrid.innerHTML=list.map((s,i)=>`\
+      <article class="service reveal">\
+        <div class="service-photo"><img src="${[
+          "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1000&q=90",
+          "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1000&q=90",
+          "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1000&q=90",
+          "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=1000&q=90"
+        ][i%4]}" alt="${esc(s.name)}"></div>\
+        <div class="service-body"><span>${String(i+1).padStart(2,"0")}</span><h3>${esc(s.name)}</h3><p>${esc(s.description||"")}</p>${Number(s.price||0)>0?`<small class="service-price">${money(s.price)}</small>`:""}<a href="#booking">احجزي ↗</a></div>\
+      </article>`).join("");
 
-      if (!name || !phone || !service || !date || !time) {
-        if (formStatus) {
-          formStatus.textContent = "يرجى ملء جميع الحقول المطلوبة.";
-        }
+    if(serviceSelect){
+      serviceSelect.innerHTML='<option value="">اختاري الخدمة</option>'+list.map(s=>`<option value="${esc(s.name)}">${esc(s.name)}${Number(s.price||0)>0?` — ${money(s.price)}`:""}</option>`).join("");
+    }
+    observeReveals();
+  }
+
+  const fallbackGallery=[
+    ["https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1000&q=90","مكياج فاخر"],
+    ["https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=900&q=90","شعر"],
+    ["https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=90","أظافر"],
+    ["https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=900&q=90","أظافر وعناية"],
+    ["https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=900&q=90","تصفيف"]
+  ];
+
+  async function loadGallery(){
+    if(!galleryGrid) return;
+    let list=null;
+    if(sb){
+      const r=await sb.from("gallery").select("id,image_url,title,sort_order").eq("active",true).order("sort_order",{ascending:true});
+      if(!r.error && Array.isArray(r.data) && r.data.length) list=r.data;
+    }
+    const items=list || fallbackGallery.map((x,i)=>({image_url:x[0],title:x[1],sort_order:i}));
+    galleryGrid.innerHTML=items.map((g,i)=>`<div class="gallery-card ${i===0?"tall":""} reveal"><img src="${esc(g.image_url)}" alt="${esc(g.title||"Charmel Paris")}" loading="lazy"></div>`).join("");
+    observeReveals();
+  }
+
+  const form=document.getElementById("bookingForm");
+  const status=document.getElementById("formStatus");
+
+  if(form){
+    form.addEventListener("submit",async(e)=>{
+      e.preventDefault();
+      const name=document.getElementById("name").value.trim();
+      const phone=document.getElementById("phone").value.trim();
+      const service=document.getElementById("service").value;
+      const date=document.getElementById("date").value;
+      const time=document.getElementById("time").value;
+      const message=document.getElementById("message").value.trim();
+
+      if(!name||!phone||!service||!date||!time){
+        status.textContent="يرجى إكمال الحقول المطلوبة.";
         return;
       }
 
-      const dateObject = new Date(`${date}T00:00:00`);
-      const formattedDate = dateObject.toLocaleDateString("ar-QA", {
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-      });
+      const pretty=new Date(date+"T00:00:00").toLocaleDateString("ar-QA",{year:"numeric",month:"long",day:"numeric"});
+      status.textContent="جاري حفظ طلب الحجز...";
 
-      let whatsappMessage =
-`مرحباً Charmel Paris ✦
-
-أرغب في حجز موعد.
-
-الاسم: ${name}
-الهاتف: ${phone}
-الخدمة: ${service}
-التاريخ: ${formattedDate}
-الوقت: ${time}`;
-
-      if (message) {
-        whatsappMessage += `\nملاحظات: ${message}`;
+      let saved=false;
+      if(sb){
+        const r=await sb.from("bookings").insert({
+          customer_name:name,
+          phone,
+          service_name:service,
+          booking_date:date,
+          booking_time:time,
+          notes:message || null,
+          status:"pending"
+        });
+        if(!r.error) saved=true;
+        else console.error("Supabase booking error:",r.error);
       }
 
-      whatsappMessage += "\n\nأرجو تأكيد الموعد. شكراً لكم.";
+      const lines=[
+        "مرحباً Charmel Paris ✨","","أرغب في حجز موعد.","",
+        `الاسم: ${name}`,`الهاتف: ${phone}`,`الخدمة: ${service}`,
+        `التاريخ: ${pretty}`,`الوقت: ${time}`,message?`الملاحظات: ${message}`:"",
+        "","يرجى تأكيد الموعد."
+      ].filter(Boolean).join("\n");
 
-      const url =
-        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
+      status.textContent=saved
+        ? "تم حفظ طلبك. سيتم فتح WhatsApp لإرسال تفاصيل الحجز."
+        : "سيتم فتح WhatsApp لإرسال طلب الحجز...";
 
-      if (formStatus) {
-        formStatus.textContent = "جاري فتح واتساب لإرسال طلب الحجز...";
-      }
-
-      window.open(url, "_blank", "noopener,noreferrer");
+      window.open(`https://wa.me/${WA}?text=${encodeURIComponent(lines)}`,"_blank","noopener,noreferrer");
+      form.reset();
+      if(dateInput) dateInput.min=new Date().toISOString().split("T")[0];
     });
   }
 
-  // =========================
-  // 6) REVEAL ANIMATIONS
-  // =========================
-  const revealItems = document.querySelectorAll(
-    ".service-card, .gallery-item, .contact-card, .about-content, .about-image"
-  );
-
-  if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("revealed");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08 });
-
-    revealItems.forEach(item => {
-      item.classList.add("reveal");
-      observer.observe(item);
-    });
+  let observer;
+  function observeReveals(){
+    if(!observer){
+      observer=new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){entry.target.classList.add("show");observer.unobserve(entry.target);}
+        });
+      },{threshold:.12});
+    }
+    document.querySelectorAll(".reveal:not(.show)").forEach(el=>observer.observe(el));
   }
+  observeReveals();
 
-  // =========================
-  // 7) ACTIVE NAVIGATION
-  // =========================
-  const sections = document.querySelectorAll("main section[id]");
-  const links = document.querySelectorAll(".nav a");
+  const sections=[...document.querySelectorAll("main section[id]")];
+  const links=[...document.querySelectorAll(".nav a:not(.nav-button)")];
+  window.addEventListener("scroll",()=>{
+    let current="home";
+    sections.forEach(section=>{if(scrollY>=section.offsetTop-190) current=section.id;});
+    links.forEach(link=>link.classList.toggle("active",link.getAttribute("href")==="#"+current));
+  });
 
-  const updateActiveLink = () => {
-    let current = "home";
-
-    sections.forEach(section => {
-      const top = section.offsetTop - 180;
-      if (window.scrollY >= top) {
-        current = section.id;
-      }
-    });
-
-    links.forEach(link => {
-      link.classList.toggle(
-        "active",
-        link.getAttribute("href") === `#${current}`
-      );
-    });
-  };
-
-  updateActiveLink();
-  window.addEventListener("scroll", updateActiveLink, { passive: true });
-});
+  loadServices();
+  loadGallery();
+})();
